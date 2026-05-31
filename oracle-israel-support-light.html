@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oracle ישראל – אגף התמיכה</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C74634;
+    --red-dark: #9B2D1F;
+    --red-light: #E05A47;
+    --red-pale: #FDF1EF;
+    --red-pale2: #FAE3E0;
+    --bg: #FFFFFF;
+    --bg2: #F8F7F5;
+    --surface: #FFFFFF;
+    --border: #E8E3DF;
+    --border-red: rgba(199,70,52,0.2);
+    --text: #1A1410;
+    --muted: #7A726B;
+    --muted2: #B0A89F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Top accent bar */
+  .top-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--red-dark), var(--red), var(--red-light));
+  }
+
+  /* HEADER */
+  header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+  }
+
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-oracle {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--red);
+    letter-spacing: -1px;
+    text-transform: uppercase;
+  }
+
+  .logo-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+  }
+
+  .logo-sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .badge-live {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-pale);
+    border: 1px solid var(--border-red);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .badge-live::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.8); }
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 56px 72px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative red shape */
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: -80px;
+    top: -80px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(199,70,52,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--red);
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 4vw, 58px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--red);
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 400px;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Hero right – quick stats */
+  .hero-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stat-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .stat-box:hover {
+    border-color: var(--border-red);
+    box-shadow: 0 4px 20px rgba(199,70,52,0.08);
+    transform: translateY(-2px);
+  }
+
+  .stat-box.accent {
+    background: var(--red);
+    border-color: var(--red);
+    color: white;
+  }
+
+  .stat-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .stat-value {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    display: block;
+    direction: ltr;
+    text-align: right;
+  }
+
+  .stat-box.accent .stat-value { color: white; }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .stat-box.accent .stat-label { color: rgba(255,255,255,0.75); }
+
+  /* SECTION */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 72px 56px 0;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    color: var(--text);
+  }
+
+  /* CARDS */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding-bottom: 80px;
+  }
+
+  .card {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: var(--border-red);
+    box-shadow: 0 8px 40px rgba(199,70,52,0.1);
+    transform: translateY(-3px);
+  }
+
+  .card:hover::after { transform: scaleX(1); }
+
+  .card.wide { grid-column: 1 / -1; }
+
+  .card-num {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted2);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--red-pale);
+    border: 1.5px solid var(--border-red);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .card h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.4px;
+    color: var(--text);
+  }
+
+  .card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  /* Phone */
+  .phone-big {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--red);
+    margin: 8px 0 6px;
+    direction: ltr;
+    display: block;
+    text-align: right;
+  }
+
+  .hours-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--red-pale);
+    border: 1px solid var(--border-red);
+    border-radius: 3px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red-dark);
+    margin-bottom: 24px;
+  }
+
+  /* Chat steps */
+  .chat-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0 24px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg2);
+    border-radius: 5px;
+    border: 1px solid var(--border);
+  }
+
+  .step-num {
+    min-width: 24px;
+    height: 24px;
+    background: var(--red);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .step-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .step-text strong { color: var(--text); font-weight: 600; }
+
+  .code-tag {
+    display: inline-block;
+    background: var(--red-pale);
+    border: 1px solid var(--border-red);
+    border-radius: 2px;
+    padding: 1px 7px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--red-dark);
+    direction: ltr;
+    font-weight: 600;
+  }
+
+  /* Wide card inner */
+  .wide-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .wide-divider {
+    width: 1px;
+    background: var(--border);
+    grid-column: unset;
+    display: none;
+  }
+
+  /* Email */
+  .email-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg2);
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    padding: 14px 18px;
+    margin: 14px 0 22px;
+    direction: ltr;
+    transition: border-color 0.2s;
+  }
+
+  .email-display:hover { border-color: var(--border-red); }
+
+  .email-display span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* CTAs */
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 13px 24px;
+    border-radius: 4px;
+    letter-spacing: 0.2px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cta-primary:hover {
+    background: var(--red-dark);
+    transform: translateX(-2px);
+    box-shadow: 0 4px 16px rgba(199,70,52,0.3);
+  }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+
+  .cta-secondary:hover {
+    border-color: var(--red);
+    color: var(--red);
+    background: var(--red-pale);
+  }
+
+  .cta-outline-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid var(--red);
+    background: transparent;
+    color: var(--red);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .cta-outline-red:hover {
+    background: var(--red);
+    color: white;
+  }
+
+  /* BOTTOM BANNER */
+  .bottom-banner {
+    background: var(--red);
+    padding: 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bottom-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(0,0,0,0.1) 0%, transparent 60%);
+  }
+
+  .bottom-banner-inner { position: relative; z-index: 1; }
+
+  .bottom-banner h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.8px;
+    margin-bottom: 10px;
+  }
+
+  .bottom-banner p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 28px;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--text);
+    padding: 24px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-logo {
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-right { animation: fadeUp 0.5s 0.2s ease both; }
+  .card { animation: fadeUp 0.5s ease both; }
+  .card:nth-child(1) { animation-delay: 0.3s; }
+  .card:nth-child(2) { animation-delay: 0.4s; }
+  .card:nth-child(3) { animation-delay: 0.5s; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    header { padding: 0 24px; }
+    .hero { grid-template-columns: 1fr; padding: 48px 24px 40px; gap: 32px; }
+    .hero::after { display: none; }
+    .section { padding: 48px 24px 0; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .card.wide { grid-column: 1; }
+    .wide-inner { grid-template-columns: 1fr; gap: 32px; }
+    .bottom-banner { padding: 40px 24px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 10px; text-align: center; }
+    .phone-big { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<!-- Header -->
+<header>
+  <div class="logo-block">
+    <div class="logo-oracle">Oracle</div>
+    <div class="logo-divider"></div>
+    <div class="logo-sub">ישראל · אגף התמיכה</div>
+  </div>
+  <div class="badge-live">שירות פעיל</div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">יצירת קשר</div>
+    <h1>אנחנו כאן<br><em>לעזור לכם</em></h1>
+    <p class="hero-desc">צוות התמיכה של Oracle ישראל עומד לרשותכם לכל שאלה, בקשה או פנייה – בטלפון, צ'אט, דוא"ל ועוד.</p>
+    <div class="hero-cta-group">
+      <a href="tel:039273677" class="cta-primary">← התקשרו עכשיו</a>
+      <a href="https://support.oracle.com" target="_blank" rel="noopener" class="cta-outline-red">פתחו צ'אט 24/7</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-box accent">
+      <span class="stat-icon">📞</span>
+      <span class="stat-value">03-9273-677</span>
+      <div class="stat-label">מוקד הוטליין הראשי</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-icon">💬</span>
+      <span class="stat-value">24/7</span>
+      <div class="stat-label">צ'אט זמין מסביב לשעון</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-icon">⏰</span>
+      <span class="stat-value" style="font-size:16px;">09:00–18:00</span>
+      <div class="stat-label">שעות שירות טלפוני</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-icon">✉️</span>
+      <span class="stat-value" style="font-size:13px; direction:ltr;">etay.gudai@oracle.com</span>
+      <div class="stat-label">פנייה בדוא"ל</div>
+    </div>
+  </div>
+</div>
+
+<!-- Cards Section -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">ערוצי התקשרות</div>
+    <div class="section-title">בחרו את הדרך המתאימה לכם</div>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- Card 1: Hotline -->
+    <div class="card">
+      <div class="card-num">01</div>
+      <div class="card-icon">📞</div>
+      <div class="card-label">מוקד הוטליין</div>
+      <h2>שיחת טלפון</h2>
+      <p>שירות טלפוני ישיר עם נציגי התמיכה שלנו בשעות הפעילות. נציגינו ישמחו לסייע בכל פנייה.</p>
+      <span class="phone-big">03-9273-677</span>
+      <div class="hours-tag">⏰ &nbsp;ימים א'–ה' | 09:00–18:00</div>
+      <br>
+      <a href="tel:039273677" class="cta-primary">← התקשרו עכשיו</a>
+    </div>
+
+    <!-- Card 2: Chat -->
+    <div class="card">
+      <div class="card-num">02</div>
+      <div class="card-icon">💬</div>
+      <div class="card-label">שירות Online</div>
+      <h2>Chat 24/7</h2>
+      <p>שירות צ'אט זמין מסביב לשעון דרך פורטל התמיכה הרשמי של Oracle.</p>
+      <div class="chat-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">היכנסו לאתר <strong>support.oracle.com</strong> וחפשו את אייקון הצ'אט <strong>האדום</strong> בפינה הימנית התחתונה.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>אין צורך ב-Login</strong> – ניתן להתחיל שיחה מיד, ללא כל הרשמה.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">לחיבור לנציג אנושי הקלידו: <span class="code-tag">Chat with live agent</span></div>
+        </div>
+      </div>
+      <a href="https://support.oracle.com" target="_blank" rel="noopener" class="cta-primary">← פתחו צ'אט עכשיו</a>
+    </div>
+
+    <!-- Wide Card: Email + Secretary -->
+    <div class="card wide">
+      <div class="wide-inner">
+        <!-- Email -->
+        <div>
+          <div class="card-num" style="position:static; margin-bottom: 6px;">03</div>
+          <div class="card-icon" style="margin-top:12px;">✉️</div>
+          <div class="card-label">דוא"ל</div>
+          <h2>פנייה בדוא"ל</h2>
+          <p>במקרה של קושי או בעיה כלשהי, ניתן לשלוח דוא"ל בשעות הפעילות ונחזור אליכם בהקדם.</p>
+          <div class="email-display">
+            <span>📧</span>
+            <span>etay.gudai@oracle.com</span>
+          </div>
+          <div class="hours-tag" style="margin-bottom:20px;">⏰ &nbsp;ימים א'–ה' | 09:00–18:00</div>
+          <br>
+          <a href="mailto:etay.gudai@oracle.com" class="cta-secondary">← שלחו דוא"ל</a>
+        </div>
+
+        <!-- Divider -->
+        <div style="border-right: 1px solid var(--border); align-self: stretch;"></div>
+
+        <!-- Secretary -->
+        <div>
+          <div class="card-num" style="position:static; margin-bottom: 6px;">04</div>
+          <div class="card-icon" style="margin-top:12px;">🏢</div>
+          <div class="card-label">מזכירות</div>
+          <h2>מזכירות Oracle ישראל</h2>
+          <p>לפניות כלליות ומינהליות – צרו קשר ישירות עם המזכירות שלנו.</p>
+          <span class="phone-big" style="font-size:26px;">03-9273-627</span>
+          <div class="hours-tag" style="margin-bottom:20px;">⏰ &nbsp;ימים א'–ה' | 09:00–18:00</div>
+          <br>
+          <a href="tel:039273627" class="cta-secondary">← התקשרו למזכירות</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Bottom Banner -->
+<div class="bottom-banner">
+  <div class="bottom-banner-inner">
+    <h2>נשמח לסייע בכל שאלה ופנייה</h2>
+    <p>צוות Oracle ישראל עומד לרשותכם בכל ערוצי התקשרות</p>
+    <a href="https://support.oracle.com" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:white; color:var(--red); text-decoration:none; font-size:15px; font-weight:800; padding:14px 32px; border-radius:4px; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateX(-2px)';this.style.boxShadow='0 6px 24px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      ← התחילו שיחה עכשיו
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-left">© 2025 Oracle Corporation · כל הזכויות שמורות</div>
+  <div class="footer-logo">Oracle</div>
+  <div class="footer-right">SUPPORT DIVISION · ISRAEL</div>
+</footer>
+
+</body>
+</html>
